@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.MenuItem;
 
 import com.bazyl.carrierservice.R;
 import com.bazyl.carrierservice.adapter.OrderAdapter;
@@ -25,8 +27,10 @@ public class MainActivity extends AppCompatActivity implements FetchOrdersContra
         setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        registerForContextMenu(recyclerView);
         fetchOrderPresenter = new FetchOrderPresenter(this);
         fetchOrderPresenter.loadOrders();
+
     }
 
 
@@ -39,5 +43,19 @@ public class MainActivity extends AppCompatActivity implements FetchOrdersContra
         recyclerView.addItemDecoration(new OrderDivider(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(orderAdapter);
     }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.phone:
+                Log.i("ITEM1", "CLICK");
+                break;
+            case R.id.map:
+                Log.i("ITEM2", "CLICK");
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
+
 }
 
