@@ -31,31 +31,35 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         public TextView location;
         public View view;
 
-        public MyViewHolder(@NonNull View view){
+        public MyViewHolder(@NonNull View view) {
             super(view);
-            this.view=view;
-            consumer = (TextView)view.findViewById(R.id.consumer);
-            items = (TextView)view.findViewById(R.id.orders);
-            phone = (TextView)view.findViewById(R.id.phone);
-            price =  (TextView)view.findViewById(R.id.price);
-            location = (TextView)view.findViewById(R.id.location);
+            this.view = view;
+            consumer = (TextView) view.findViewById(R.id.consumer);
+            items = (TextView) view.findViewById(R.id.orders);
+            phone = (TextView) view.findViewById(R.id.phone);
+            price = (TextView) view.findViewById(R.id.price);
+            location = (TextView) view.findViewById(R.id.location);
             view.setOnCreateContextMenuListener(this);
         }
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-            contextMenu.add(Menu.NONE,R.id.phone,Menu.NONE,R.string.call);
-            contextMenu.add(Menu.NONE,R.id.map,Menu.NONE,R.string.map);
+            contextMenu.add(Menu.NONE, R.id.phone, Menu.NONE, R.string.call);
+            contextMenu.add(Menu.NONE, R.id.map, Menu.NONE, R.string.map);
         }
 
     }
 
-    public OrderAdapter(List<Order> orders){
-        this.orders=orders;
+    public OrderAdapter(List<Order> orders) {
+        this.orders = orders;
     }
 
     public int getPosition() {
         return position;
+    }
+
+    public Order getOrder(int position) {
+        return orders.get(position);
     }
 
     public void setPosition(int position) {
@@ -83,7 +87,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
             @Override
             public boolean onLongClick(View view) {
                 setPosition(holder.getAdapterPosition());
-                Log.i("LONGCLICK","WORK!");
+                Log.i("LONGCLICK", "WORK!");
                 return false;
             }
         });

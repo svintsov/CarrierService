@@ -1,5 +1,7 @@
 package com.bazyl.carrierservice.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -46,9 +48,19 @@ public class MainActivity extends AppCompatActivity implements FetchOrdersContra
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        int position = -1;
+        OrderAdapter orderAdapter = (OrderAdapter) recyclerView.getAdapter();
+        try {
+            position = orderAdapter.getPosition();
+        } catch (Exception e) {
+            Log.d("TAG", e.getLocalizedMessage(), e);
+            return super.onContextItemSelected(item);
+        }
         switch (item.getItemId()) {
             case R.id.phone:
                 Log.i("ITEM1", "CLICK");
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + orderAdapter.getOrder(position).getPhone()));
+                startActivity(intent);
                 break;
             case R.id.map:
                 Log.i("ITEM2", "CLICK");
