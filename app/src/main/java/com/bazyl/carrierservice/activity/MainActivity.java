@@ -3,6 +3,7 @@ package com.bazyl.carrierservice.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements FetchOrdersContra
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
         int position = -1;
         OrderAdapter orderAdapter = (OrderAdapter) recyclerView.getAdapter();
         try {

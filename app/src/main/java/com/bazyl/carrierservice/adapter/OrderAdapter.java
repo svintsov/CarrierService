@@ -43,7 +43,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         }
 
         @Override
-        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+        public void onCreateContextMenu(@NonNull ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
             contextMenu.add(Menu.NONE, R.id.phone, Menu.NONE, R.string.call);
             contextMenu.add(Menu.NONE, R.id.map, Menu.NONE, R.string.map);
         }
