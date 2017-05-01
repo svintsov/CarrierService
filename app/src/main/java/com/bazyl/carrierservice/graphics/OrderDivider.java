@@ -1,4 +1,4 @@
-package com.bazyl.carrierservice.activity;
+package com.bazyl.carrierservice.graphics;
 
 import android.content.Context;
 import android.content.res.TypedArray;

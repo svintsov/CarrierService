@@ -10,10 +10,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.bazyl.carrierservice.R;
 import com.bazyl.carrierservice.adapter.OrderAdapter;
 import com.bazyl.carrierservice.contract.FetchOrdersContract;
+import com.bazyl.carrierservice.graphics.OrderDivider;
 import com.bazyl.carrierservice.model.Order;
 import com.bazyl.carrierservice.presenter.FetchOrderPresenter;
 
@@ -68,6 +70,11 @@ public class MainActivity extends AppCompatActivity implements FetchOrdersContra
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    public void startOrderCreateActivity(View v) {
+        Intent intent = new Intent(this, OrderCreateActivity.class);
+        startActivity(intent);
     }
 
 }
