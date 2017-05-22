@@ -15,5 +15,7 @@ public interface FetchOrdersContract {
 
     interface Presenter {
         void loadOrders();
+
+        void saveOrder(Order order);
     }
 }

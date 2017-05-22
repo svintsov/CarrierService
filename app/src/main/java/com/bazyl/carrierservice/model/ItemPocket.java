@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by bazyl on 4/27/17.
- */
 
 public class ItemPocket {
+
     private List<String> itemsList;
 
     public ItemPocket() {
@@ -23,6 +21,10 @@ public class ItemPocket {
 
     public ItemPocket(String[] items) {
         itemsList = new ArrayList<>(Arrays.asList(items));
+    }
+
+    public List<String> getItemsList() {
+        return itemsList;
     }
 
     @NonNull

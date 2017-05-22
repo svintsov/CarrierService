@@ -28,11 +28,13 @@
             android:src="@drawable/ic_person" />
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/consumerwrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/MyHintText">
 
             <EditText
+                android:id="@+id/consumer_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Consumer"
@@ -54,11 +56,13 @@
             android:src="@drawable/ic_attach_money" />
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/pricewrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/MyHintText">
 
             <EditText
+                android:id="@+id/price_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Price"
@@ -80,11 +84,13 @@
             android:src="@drawable/ic_phone" />
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/phonewrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/MyHintText">
 
             <EditText
+                android:id="@+id/phone_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone"
@@ -106,11 +112,13 @@
             android:src="@drawable/ic_place" />
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/locationwrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/MyHintText">
 
             <EditText
+                android:id="@+id/location_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Location"
@@ -126,11 +134,13 @@
         android:padding="16dp">
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/itemswrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/MyHintText">
 
             <EditText
+                android:id="@+id/items_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Items"

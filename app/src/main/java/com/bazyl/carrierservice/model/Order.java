@@ -1,8 +1,5 @@
 package com.bazyl.carrierservice.model;
 
-/**
- * Created by bazyl on 4/27/17.
- */
 
 public class Order {
     private String consumer;
@@ -17,6 +14,10 @@ public class Order {
         this.price = price;
         this.phone = phone;
         this.location = location;
+    }
+
+    public Order() {
+
     }
 
     public String getConsumer() {
