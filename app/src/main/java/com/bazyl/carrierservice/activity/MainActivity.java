@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements FetchOrdersContra
     private OrderAdapter orderAdapter;
     private FetchOrderPresenter fetchOrderPresenter;
     private FirebaseRecyclerAdapter<Order, RecyclerHolder> mAdapter;
+    private int positionLongClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,31 +69,34 @@ public class MainActivity extends AppCompatActivity implements FetchOrdersContra
         recyclerView.addItemDecoration(new OrderDivider(this, LinearLayoutManager.VERTICAL));
         mAdapter = new FirebaseRecyclerAdapter<Order, RecyclerHolder>(Order.class, R.layout.list_item_view, RecyclerHolder.class, mOrders) {
             @Override
-            public void populateViewHolder(RecyclerHolder holder, Order order, int position) {
+            public void populateViewHolder(final RecyclerHolder holder, Order order, int position) {
                 holder.consumer.setText(order.getConsumer());
                 holder.items.setText(order.getItems().toString());
                 holder.price.setText(order.getPrice().concat("₴"));
                 holder.phone.setText(order.getPhone());
                 holder.location.setText(order.getLocation());
+                holder.view.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        setLongClickPosition(holder.getLayoutPosition());
+                        return false;
+                    }
+                });
             }
         };
         recyclerView.setAdapter(mAdapter);
     }
 
+    void setLongClickPosition(int position) {
+        positionLongClicked = position;
+    }
+
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        int position = -1;
-        OrderAdapter orderAdapter = (OrderAdapter) recyclerView.getAdapter();
-        try {
-            position = orderAdapter.getPosition();
-        } catch (Exception e) {
-            Log.d("TAG", e.getLocalizedMessage(), e);
-            return super.onContextItemSelected(item);
-        }
         switch (item.getItemId()) {
             case R.id.phone:
                 Log.i("ITEM1", "CLICK");
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + orderAdapter.getOrder(position).getPhone()));
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mAdapter.getItem(positionLongClicked).getPhone()));
                 startActivity(intent);
                 break;
             case R.id.map:
