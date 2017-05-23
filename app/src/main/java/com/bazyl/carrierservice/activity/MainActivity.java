@@ -16,10 +16,14 @@ import android.view.View;
 
 import com.bazyl.carrierservice.R;
 import com.bazyl.carrierservice.adapter.OrderAdapter;
+import com.bazyl.carrierservice.adapter.RecyclerHolder;
 import com.bazyl.carrierservice.contract.FetchOrdersContract;
 import com.bazyl.carrierservice.graphics.OrderDivider;
 import com.bazyl.carrierservice.model.Order;
 import com.bazyl.carrierservice.presenter.FetchOrderPresenter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements FetchOrdersContra
     private RecyclerView recyclerView;
     private OrderAdapter orderAdapter;
     private FetchOrderPresenter fetchOrderPresenter;
+    private FirebaseRecyclerAdapter<Order, RecyclerHolder> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +59,24 @@ public class MainActivity extends AppCompatActivity implements FetchOrdersContra
 
     @Override
     public void showOrders(List<Order> orders) {
-        orderAdapter = new OrderAdapter(orders);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mOrders = ref.child("orders");
+        //orderAdapter = new OrderAdapter(orders);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new OrderDivider(this, LinearLayoutManager.VERTICAL));
-        recyclerView.setAdapter(orderAdapter);
+        mAdapter = new FirebaseRecyclerAdapter<Order, RecyclerHolder>(Order.class, R.layout.list_item_view, RecyclerHolder.class, mOrders) {
+            @Override
+            public void populateViewHolder(RecyclerHolder holder, Order order, int position) {
+                holder.consumer.setText(order.getConsumer());
+                holder.items.setText(order.getItems().toString());
+                holder.price.setText(order.getPrice().concat("₴"));
+                holder.phone.setText(order.getPhone());
+                holder.location.setText(order.getLocation());
+            }
+        };
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override

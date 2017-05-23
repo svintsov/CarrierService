@@ -33,7 +33,7 @@ public class FetchOrderPresenter implements FetchOrdersContract.Presenter {
 
     @Override
     public void saveOrder(Order order) {
-        mOrders.setValue(order);
+        mOrders.push().setValue(order);
     }
 
 
